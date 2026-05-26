@@ -1,0 +1,170 @@
+{
+  "btn_add_process": {
+    "type": "css",
+    "value": "button#addProcess, button.add-process"
+  },
+  "btn_edit_process": {
+    "type": "css",
+    "value": "button.edit-process, a.edit-process, .process-action-edit"
+  },
+  "btn_delete_process": {
+    "type": "css",
+    "value": "button.delete-process, .process-action-delete"
+  },
+  "btn_save": {
+    "type": "css",
+    "value": "button#saveProcess, button[type='submit'].save-btn"
+  },
+  "btn_cancel": {
+    "type": "css",
+    "value": "button#cancelProcess, button.cancel-btn"
+  },
+  "btn_confirm_delete": {
+    "type": "css",
+    "value": "button#confirmDelete, .modal button.btn-danger"
+  },
+  "btn_next_step": {
+    "type": "css",
+    "value": "button#nextStep, button.next-step, .wizard-next"
+  },
+  "btn_prev_step": {
+    "type": "css",
+    "value": "button#prevStep, button.prev-step"
+  },
+  "btn_finish": {
+    "type": "css",
+    "value": "button#finishProcess, button.finish-btn, .wizard-finish"
+  },
+  "input_process_name": {
+    "type": "css",
+    "value": "input#processName, input[name='processName']"
+  },
+  "input_description": {
+    "type": "css",
+    "value": "textarea#description, input#description"
+  },
+  "select_source_ds": {
+    "type": "css",
+    "value": "select#sourceDataSource, select[name='sourceDataSource']"
+  },
+  "select_target_ds": {
+    "type": "css",
+    "value": "select#targetDataSource, select[name='targetDataSource']"
+  },
+  "select_process_type": {
+    "type": "css",
+    "value": "select#processType, select[name='processType']"
+  },
+  "select_transfer_mode": {
+    "type": "css",
+    "value": "select#transferMode, select[name='transferMode']"
+  },
+  "input_source_schema": {
+    "type": "css",
+    "value": "input#sourceSchema, input[name='sourceSchema']"
+  },
+  "input_source_table": {
+    "type": "css",
+    "value": "input#sourceTable, input[name='sourceTable']"
+  },
+  "input_target_schema": {
+    "type": "css",
+    "value": "input#targetSchema, input[name='targetSchema']"
+  },
+  "input_target_table": {
+    "type": "css",
+    "value": "input#targetTable, input[name='targetTable']"
+  },
+  "checkbox_truncate_target": {
+    "type": "css",
+    "value": "input#truncateTarget, input[name='truncateTarget']"
+  },
+  "checkbox_create_table": {
+    "type": "css",
+    "value": "input#createTable, input[name='createTable']"
+  },
+  "process_table": {
+    "type": "css",
+    "value": "table#processTable, table.process-list"
+  },
+  "process_table_rows": {
+    "type": "css",
+    "value": "table#processTable tbody tr"
+  },
+  "search_process": {
+    "type": "css",
+    "value": "input#searchProcess, input.search-process"
+  },
+  "page_title": {
+    "type": "css",
+    "value": "h1.page-title, #process-def-page-title"
+  },
+  "tab_general": {
+    "type": "css",
+    "value": "a[href*='general'], #tab-general"
+  },
+  "tab_mapping": {
+    "type": "css",
+    "value": "a[href*='mapping'], #tab-mapping"
+  },
+  "tab_schedule": {
+    "type": "css",
+    "value": "a[href*='schedule'], #tab-schedule"
+  },
+  "bulk_process": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Bulk transfer and batch compare')]"
+  },
+  "btn_start_bulk_process": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'START PROCESS')]"
+  },
+  "btn_Ok": {
+    "type": "xpath",
+    "value": "//div[@role='dialog']//button[normalize-space()='OK'] | //div[@class[contains(.,'dialog')]]//button[normalize-space()='OK'] | //button[normalize-space()='OK']"
+  },
+  "data_Souce_name": {
+    "type": "css",
+    "value": "div[tabindex='21']"
+  },
+  "processing_Agent": {
+    "type": "css",
+    "value": "div[tabindex='36']"
+  },
+  "prepare_data_for":{
+    "type":"css",
+    "value":"div[tabindex='40']"
+  },
+  "apply_agent":{
+    "type":"css",
+    "value":"div[tabindex='47']"
+  },
+  "apply_to_target_database": {
+    "type":"css",
+    "value":"div[tabindex='50']"
+  },
+  "apply_logging": {
+    "type":"css",
+    "value":"div[tabindex='53']"
+  },
+  "Erroneous": {
+    "type":"css",
+    "value":"div[tabindex='54']"
+  },
+  "save_changes": {
+    "type":"xpath",
+    "value":"//div[contains(text(),'SAVE CHANGES')]"
+  },
+  "more_settings": {
+    "type":"css",
+    "value":"body > div:nth-child(5) > div:nth-child(3) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div:nth-child(1)"
+  },
+  "delete_process": {
+    "type":"xpath",
+    "value":"//div[contains(text(),'DELETE PROCESS')]"
+  },
+  "data_source_agent": {
+    "type":"css",
+    "value":"body > div:nth-child(5) > div:nth-child(3) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4) > div:nth-child(3) > div:nth-child(6)"
+  }
+}

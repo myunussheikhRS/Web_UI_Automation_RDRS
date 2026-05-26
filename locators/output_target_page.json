@@ -1,0 +1,82 @@
+{
+  "btn_add_output_target": {
+    "type": "css",
+    "value": "button#addOutputTarget, button.add-output-target"
+  },
+  "btn_edit_output_target": {
+    "type": "css",
+    "value": "button.edit-output-target, .ot-action-edit"
+  },
+  "btn_delete_output_target": {
+    "type": "css",
+    "value": "button.delete-output-target, .ot-action-delete"
+  },
+  "btn_save": {
+    "type": "css",
+    "value": "button#saveOutputTarget, button[type='submit'].save-btn"
+  },
+  "btn_cancel": {
+    "type": "css",
+    "value": "button#cancelOutputTarget, button.cancel-btn"
+  },
+  "btn_test_connection": {
+    "type": "css",
+    "value": "button#testOTConnection"
+  },
+  "btn_confirm_delete": {
+    "type": "css",
+    "value": "button#confirmDelete, .modal button.btn-danger"
+  },
+  "input_ot_name": {
+    "type": "css",
+    "value": "input#outputTargetName, input[name='outputTargetName']"
+  },
+  "input_host": {
+    "type": "css",
+    "value": "input#otHost, input[name='otHost']"
+  },
+  "input_port": {
+    "type": "css",
+    "value": "input#otPort, input[name='otPort']"
+  },
+  "input_database": {
+    "type": "css",
+    "value": "input#otDatabase, input[name='otDatabase']"
+  },
+  "input_username": {
+    "type": "css",
+    "value": "input#otUsername, input[name='otUsername']"
+  },
+  "input_password": {
+    "type": "css",
+    "value": "input#otPassword, input[name='otPassword']"
+  },
+  "input_schema": {
+    "type": "css",
+    "value": "input#otSchema, input[name='otSchema']"
+  },
+  "select_ot_type": {
+    "type": "css",
+    "value": "select#outputTargetType, select[name='outputTargetType']"
+  },
+  "select_agent": {
+    "type": "css",
+    "value": "select#otAgent, select[name='otAgent']"
+  },
+  "output_target_table": {
+    "type": "css",
+    "value": "table#outputTargetTable, table.output-target-list"
+  },
+  "output_target_table_rows": {
+    "type": "css",
+    "value": "table#outputTargetTable tbody tr"
+  },
+  "connection_success_msg": {
+    "type": "css",
+    "value": ".connection-success, .alert-success"
+  },
+  "page_title": {
+    "type": "css",
+    "value": "h1.page-title, #output-target-page-title"
+  }
+}

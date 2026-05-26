@@ -1,0 +1,135 @@
+{
+  "process_list": {
+    "type": "xpath",
+    "value": "(//div[normalize-space(text())='Process list'])[1]"
+  },
+  "active_process_list": {
+    "type": "css",
+    "value": "div[tabindex='16']"
+  },
+  "agent_name": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Agent')])[2]/following-sibling::div"
+  },
+  "process_id": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process Id')])[1]/following-sibling::div"
+  },
+  "type_of_process": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Type of process')])[1]/following-sibling::div"
+  },
+  "start_of_process": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Start of process')])[1]/following-sibling::div"
+  },
+  "process_name_on_agent": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process name on agent')])[1]/following-sibling::div"
+  },
+  "start_of_process_part": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Start of process')])[1]/following-sibling::div"
+  },
+  "state_of_process_part": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'State of process part')])[1]/following-sibling::div"
+  },
+  "return_code": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Return code')]/following-sibling::div[1]"
+  },
+  "error_code": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Error code')]/following-sibling::div"
+  },
+  "message": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Message')]/following-sibling::div"
+  },
+  "control_record_in": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Control records in')]/following-sibling::div"
+  },
+  "data_block_in": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Data blocks in')]/following-sibling::div"
+  },
+  "number_of_records_read": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Number of records read')]/following-sibling::div"
+  },
+  "control_record_out": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Control records out')]/following-sibling::div"
+  },
+  "data_block_out": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Data blocks out')]/following-sibling::div"
+  },
+  "number_of_records_written": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Number of records written')]/following-sibling::div"
+  },
+  "agent_name_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Agent')])[last()]/following-sibling::div"
+  },
+  "process_id_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process Id')])[last()]/following-sibling::div"
+  },
+  "type_of_process_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Type of process')])[last()]/following-sibling::div"
+  },
+  "state_of_process_part_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'State of process part')])[last()]/following-sibling::div"
+  },
+  "process_name_on_agent_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process name on agent')])[last()]/following-sibling::div"
+  },
+  "return_code_PA": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Return code')][last()]/following-sibling::div"
+  },
+  "error_code_PA": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Error code')][last()]/following-sibling::div"
+  },
+  "message_PA": {
+    "type": "xpath",
+    "value": "//div[contains(text(),'Message')][last()]/following-sibling::div"
+  },
+  "control_record_in_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Control records in')])[last()]/following-sibling::div"
+  },
+  "data_block_in_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Data blocks in')])[last()]/following-sibling::div"
+  },
+  "number_of_records_read_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Number of records read')])[last()]/following-sibling::div"
+  },
+  "control_record_out_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Control records out')])[last()]/following-sibling::div"
+  },
+  "data_block_out_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Data blocks out')])[last()]/following-sibling::div"
+  },
+  "number_of_records_written_PA": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Number of records written')])[last()]/following-sibling::div"
+  },
+  "collapse_button": {
+    "type": "css",
+    "value": "div[tabindex='18'] div div "
+  }
+   
+}

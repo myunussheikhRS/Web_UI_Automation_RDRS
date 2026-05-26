@@ -1,0 +1,86 @@
+{
+  "btn_add_datasource": {
+    "type": "css",
+    "value": "button#addDataSource, button.add-datasource"
+  },
+  "btn_edit_datasource": {
+    "type": "css",
+    "value": "button.edit-datasource, .ds-action-edit"
+  },
+  "btn_delete_datasource": {
+    "type": "css",
+    "value": "button.delete-datasource, .ds-action-delete"
+  },
+  "btn_save": {
+    "type": "css",
+    "value": "button#saveDataSource, button[type='submit'].save-btn"
+  },
+  "btn_cancel": {
+    "type": "css",
+    "value": "button#cancelDataSource, button.cancel-btn"
+  },
+  "btn_test_connection": {
+    "type": "css",
+    "value": "button#testConnection, button.test-connection"
+  },
+  "btn_confirm_delete": {
+    "type": "css",
+    "value": "button#confirmDelete, .modal button.btn-danger"
+  },
+  "input_ds_name": {
+    "type": "css",
+    "value": "input#dataSourceName, input[name='dataSourceName']"
+  },
+  "input_host": {
+    "type": "css",
+    "value": "input#dbHost, input[name='host']"
+  },
+  "input_port": {
+    "type": "css",
+    "value": "input#dbPort, input[name='port']"
+  },
+  "input_database": {
+    "type": "css",
+    "value": "input#database, input[name='database']"
+  },
+  "input_username": {
+    "type": "css",
+    "value": "input#username, input[name='username']"
+  },
+  "input_password": {
+    "type": "css",
+    "value": "input#password, input[name='password']"
+  },
+  "input_schema": {
+    "type": "css",
+    "value": "input#schema, input[name='schema']"
+  },
+  "select_db_type": {
+    "type": "css",
+    "value": "select#dbType, select[name='dbType']"
+  },
+  "select_agent": {
+    "type": "css",
+    "value": "select#agent, select[name='agent']"
+  },
+  "datasource_table": {
+    "type": "css",
+    "value": "table#dataSourceTable, table.datasource-list"
+  },
+  "datasource_table_rows": {
+    "type": "css",
+    "value": "table#dataSourceTable tbody tr"
+  },
+  "connection_success_msg": {
+    "type": "css",
+    "value": ".connection-success, .alert-success"
+  },
+  "connection_error_msg": {
+    "type": "css",
+    "value": ".connection-error, .alert-danger"
+  },
+  "page_title": {
+    "type": "css",
+    "value": "h1.page-title, #datasource-page-title"
+  }
+}

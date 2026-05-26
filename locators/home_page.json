@@ -1,0 +1,28 @@
+{
+  "nav_home": {"type": "css", "value": "a[href*='home'], a.nav-home, #nav-home"},
+
+  "logo": {"type": "css", "value": ".logo, #logo, img.brand-logo"},
+
+  "main_menu": {"type": "css", "value": "nav.main-nav, #main-menu, .navbar"},
+
+  "menu_agent": {"type": "css", "value": "a[href*='agent'], #menu-agent, .menu-item-agent"},
+  
+  "menu_data_source": {"type": "css", "value": "a[href*='datasource'], a[href*='data-source'], #menu-datasource"},
+
+  "menu_process_definition": {"type": "xpath", "value": "//div[contains(text(),'Process definitions')]"},
+
+  "menu_process_list": {"type": "css", "value": "a[href*='processlist'], a[href*='process-list'], #menu-process-list"},
+
+  "menu_repository": {"type": "css", "value": "a[href*='repository'], #menu-repository"},
+
+  "menu_output_target": {"type": "css", "value": "a[href*='outputtarget'], a[href*='output-target'], #menu-output-target"},
+
+  "page_title": {"type": "css", "value": "h1.page-title, .page-header h1, #page-title"},
+
+  "success_message": {"type": "css", "value": ".alert-success, .success-msg, #success-message"},
+
+  "error_message": {"type": "css", "value": ".alert-danger, .error-msg, #error-message"},
+
+  "loading_spinner": {"type": "css", "value": ".spinner, .loading, #loading-overlay"}
+
+}

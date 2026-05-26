@@ -1,0 +1,66 @@
+{
+  "btn_add_agent": {
+    "type": "css",
+    "value": "button#addAgent, button.add-agent"
+  },
+  "btn_edit_agent": {
+    "type": "css",
+    "value": "button.edit-agent, a.edit-agent, .agent-action-edit"
+  },
+  "btn_delete_agent": {
+    "type": "css",
+    "value": "button.delete-agent, .agent-action-delete"
+  },
+  "btn_save": {
+    "type": "css",
+    "value": "button#saveAgent, button[type='submit'].save-btn"
+  },
+  "btn_cancel": {
+    "type": "css",
+    "value": "button#cancelAgent, button.cancel-btn"
+  },
+  "btn_confirm_delete": {
+    "type": "css",
+    "value": "button#confirmDelete, .modal button.btn-danger"
+  },
+  "input_agent_name": {
+    "type": "css",
+    "value": "input#agentName, input[name='agentName']"
+  },
+  "input_host": {
+    "type": "css",
+    "value": "input#host, input[name='host']"
+  },
+  "input_port": {
+    "type": "css",
+    "value": "input#port, input[name='port']"
+  },
+  "input_description": {
+    "type": "css",
+    "value": "textarea#description, input#description"
+  },
+  "select_agent_type": {
+    "type": "css",
+    "value": "select#agentType, select[name='agentType']"
+  },
+  "agent_table": {
+    "type": "css",
+    "value": "table#agentTable, table.agent-list"
+  },
+  "agent_table_rows": {
+    "type": "css",
+    "value": "table#agentTable tbody tr, table.agent-list tbody tr"
+  },
+  "search_agent": {
+    "type": "css",
+    "value": "input#searchAgent, input.search-agent"
+  },
+  "page_title": {
+    "type": "css",
+    "value": "h1.page-title, .page-header h1"
+  },
+  "no_records_msg": {
+    "type": "css",
+    "value": ".no-records, td.dataTables_empty"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "btn_add_repository": {
+    "type": "css",
+    "value": "button#addRepository, button.add-repository"
+  },
+  "btn_edit_repository": {
+    "type": "css",
+    "value": "button.edit-repository, .repo-action-edit"
+  },
+  "btn_delete_repository": {
+    "type": "css",
+    "value": "button.delete-repository, .repo-action-delete"
+  },
+  "btn_save": {
+    "type": "css",
+    "value": "button#saveRepository, button[type='submit'].save-btn"
+  },
+  "btn_cancel": {
+    "type": "css",
+    "value": "button#cancelRepository, button.cancel-btn"
+  },
+  "btn_test_connection": {
+    "type": "css",
+    "value": "button#testRepoConnection"
+  },
+  "btn_confirm_delete": {
+    "type": "css",
+    "value": "button#confirmDelete, .modal button.btn-danger"
+  },
+  "input_repo_name": {
+    "type": "css",
+    "value": "input#repositoryName, input[name='repositoryName']"
+  },
+  "input_host": {
+    "type": "css",
+    "value": "input#repoHost, input[name='repoHost']"
+  },
+  "input_port": {
+    "type": "css",
+    "value": "input#repoPort, input[name='repoPort']"
+  },
+  "input_database": {
+    "type": "css",
+    "value": "input#repoDatabase, input[name='repoDatabase']"
+  },
+  "input_username": {
+    "type": "css",
+    "value": "input#repoUsername, input[name='repoUsername']"
+  },
+  "input_password": {
+    "type": "css",
+    "value": "input#repoPassword, input[name='repoPassword']"
+  },
+  "select_repo_type": {
+    "type": "css",
+    "value": "select#repoType, select[name='repoType']"
+  },
+  "repository_table": {
+    "type": "css",
+    "value": "table#repositoryTable, table.repository-list"
+  },
+  "repository_table_rows": {
+    "type": "css",
+    "value": "table#repositoryTable tbody tr"
+  },
+  "connection_success_msg": {
+    "type": "css",
+    "value": ".connection-success, .alert-success"
+  },
+  "page_title": {
+    "type": "css",
+    "value": "h1.page-title, #repository-page-title"
+  }
+}
