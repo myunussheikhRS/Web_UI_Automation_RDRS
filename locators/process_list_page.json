@@ -130,6 +130,118 @@
   "collapse_button": {
     "type": "css",
     "value": "div[tabindex='18'] div div "
+  },
+  "agent_name_P": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Agent')])[position()=2]/following-sibling::div"
+  },
+  "process_id_P": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process Id')])[position()=2]/following-sibling::div"
+  },
+  "type_of_process_P": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Type of process')])[position()=2]/following-sibling::div"
+  },
+  "state_of_process_part_P": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'State of process part')])[position()=2]/following-sibling::div"
+  },
+  "process_name_on_agent_P": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process name on agent')])[position()=2]/following-sibling::div"
+  },
+  "return_code_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Return code')])[position()=2]/following-sibling::div"
+  },
+  "error_code_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Error code')])[position()=2]/following-sibling::div"
+  },
+  "message_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Message')])[position()=3]/following-sibling::div"
+  },
+  "control_record_in_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Control records in')])[position()=2]/following-sibling::div"
+  },
+  "data_block_in_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Data blocks in')])[position()=2]/following-sibling::div"
+  },
+  "number_of_records_read_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Number of records read')])[position()=2]/following-sibling::div"
+  },
+  "control_record_out_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Control records out')])[position()=2]/following-sibling::div"
+  },
+  "data_block_out_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Data blocks out')])[position()=2]/following-sibling::div"
+  },
+  "number_of_records_written_P":{
+    "type":"xpath",
+    "value":"(//div[contains(text(),'Number of records written')])[position()=2]/following-sibling::div"
+  },
+  "agent_name_A": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Agent')])[position()=4]/following-sibling::div"
+  },
+  "process_id_A": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process Id')])[position()=3]/following-sibling::div"
+  },
+  "type_of_process_A": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Type of process')])[position()=3]/following-sibling::div"
+  },
+  "state_of_process_part_A": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'State of process part')])[position()=3]/following-sibling::div"
+  },
+  "process_name_on_agent_A": {
+    "type": "xpath",
+    "value": "(//div[contains(text(),'Process name on agent')])[position()=3]/following-sibling::div"
+  },
+  "return_code_A": {
+    "type": "css",
+    "value": "div[tabindex='39'] div:nth-child(10) > div:nth-child(3)"
+  },
+  "error_code_A": {
+    "type": "css",
+    "value": "div[tabindex='39'] div:nth-child(11) > div:nth-child(2)"
+  },
+  "message_A": {
+    "type": "css",
+    "value": "div[tabindex='39'] div:nth-child(12) > div:nth-child(2)"
+  },
+  "control_record_in_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(2) > div:nth-child(2)"
+  },
+  "data_block_in_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(3) > div:nth-child(2)"
+  },
+  "number_of_records_read_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(4) > div:nth-child(2)"
+  },
+  "control_record_out_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(6) > div:nth-child(2)"
+  },
+  "data_block_out_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(7) > div:nth-child(2)"
+  },
+  "number_of_records_written_A": {
+    "type": "css",
+    "value": "div[tabindex='41'] div:nth-child(8) > div:nth-child(2)"
   }
    
 }

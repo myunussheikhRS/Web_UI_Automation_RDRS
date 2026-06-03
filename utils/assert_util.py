@@ -1,46 +1,59 @@
-import allure, pytest
+import inspect
+import pytest
+
+from utils.report_logger import ReportLogger
 
 class AssertUtil:
     @staticmethod
+    def _caller_method_name():
+        frame = inspect.currentframe()
+        if frame is None:
+            return "-"
+        caller = frame.f_back
+        # Walk out of AssertUtil internals to find the test/page method.
+        while caller:
+            name = caller.f_code.co_name
+            if name not in {"assert_equals", "assert_true", "assert_false", "assert_contains", "assert_not_empty"}:
+                return name
+            caller = caller.f_back
+        return "-"
+
+    @staticmethod
     def assert_equals(actual, expected, field_name="value"):
-        with allure.step(f"Assert '{field_name}': expected='{expected}', actual='{actual}'"):
-            if actual == expected:
-                allure.attach(f"PASS | {field_name}: '{actual}' == '{expected}'",
-                    name=f"PASS - {field_name}", attachment_type=allure.attachment_type.TEXT)
-            else:
-                allure.attach(f"FAIL | {field_name}: expected='{expected}' got='{actual}'",
-                    name=f"FAIL - {field_name}", attachment_type=allure.attachment_type.TEXT)
-                pytest.fail(f"Assert failed '{field_name}': expected='{expected}', actual='{actual}'")
+        method_name = AssertUtil._caller_method_name()
+        if actual == expected:
+            ReportLogger.log_assert(field_name, expected, actual, "PASS", method_name=method_name)
+        else:
+            ReportLogger.log_assert(field_name, expected, actual, "FAIL", method_name=method_name)
+            pytest.fail(f"Assert failed '{field_name}': expected='{expected}', actual='{actual}'")
+
     @staticmethod
     def assert_true(condition, message="condition"):
-        with allure.step(f"Assert True: {message}"):
-            if condition:
-                allure.attach(f"PASS | {message}", name=f"PASS - {message}",
-                    attachment_type=allure.attachment_type.TEXT)
-            else:
-                allure.attach(f"FAIL | {message} is False", name=f"FAIL - {message}",
-                    attachment_type=allure.attachment_type.TEXT)
-                pytest.fail(f"Assert failed: '{message}' is not True")
+        method_name = AssertUtil._caller_method_name()
+        if condition:
+            ReportLogger.log_assert(message, True, True, "PASS", method_name=method_name)
+        else:
+            ReportLogger.log_assert(message, True, False, "FAIL", method_name=method_name)
+            pytest.fail(f"Assert failed: '{message}' is not True")
+
     @staticmethod
     def assert_false(condition, message="condition"):
         AssertUtil.assert_true(not condition, message)
+
     @staticmethod
     def assert_contains(container, substring, field_name="text"):
-        with allure.step(f"Assert '{field_name}' contains '{substring}'"):
-            if substring in container:
-                allure.attach(f"PASS | contains '{substring}'", name=f"PASS - {field_name}",
-                    attachment_type=allure.attachment_type.TEXT)
-            else:
-                allure.attach(f"FAIL | does not contain '{substring}'",
-                    name=f"FAIL - {field_name}", attachment_type=allure.attachment_type.TEXT)
-                pytest.fail(f"'{field_name}' value '{container}' does not contain '{substring}'")
+        method_name = AssertUtil._caller_method_name()
+        if substring in container:
+            ReportLogger.log_assert(field_name, f"contains '{substring}'", container, "PASS", method_name=method_name)
+        else:
+            ReportLogger.log_assert(field_name, f"contains '{substring}'", container, "FAIL", method_name=method_name)
+            pytest.fail(f"'{field_name}' value '{container}' does not contain '{substring}'")
+
     @staticmethod
     def assert_not_empty(value, field_name="value"):
-        with allure.step(f"Assert '{field_name}' is not empty"):
-            if value is not None and str(value).strip():
-                allure.attach(f"PASS | '{field_name}' = '{value}'",
-                    name=f"PASS - {field_name} not empty", attachment_type=allure.attachment_type.TEXT)
-            else:
-                allure.attach(f"FAIL | '{field_name}' is empty",
-                    name=f"FAIL - {field_name} empty", attachment_type=allure.attachment_type.TEXT)
-                pytest.fail(f"'{field_name}' is empty or None")
+        method_name = AssertUtil._caller_method_name()
+        if value is not None and str(value).strip():
+            ReportLogger.log_assert(field_name, "non-empty", value, "PASS", method_name=method_name)
+        else:
+            ReportLogger.log_assert(field_name, "non-empty", value, "FAIL", method_name=method_name)
+            pytest.fail(f"'{field_name}' is empty or None")

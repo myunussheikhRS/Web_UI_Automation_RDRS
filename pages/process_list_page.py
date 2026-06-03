@@ -87,6 +87,21 @@ class ProcessListPage(BasePage):
             for field_name, locator_key in field_map.items()
         }
 
+    def _get_process_part_processing_values(self):
+        field_map = {
+            "agent_name_P": "agent_name_P",
+            "process_id_P": "process_id_P",
+            "type_of_process_P": "type_of_process_P",
+            "process_name_on_agent_P": "process_name_on_agent_P",
+            "return_code_P": "return_code_P",
+            "error_code_P": "error_code_P",
+            "message_P": "message_P",
+        }
+        return {
+            field_name: self.get_text(self._loc(_P, locator_key).first).strip()
+            for field_name, locator_key in field_map.items()
+        }
+
     def _get_process_part_processing_applying_reslute_values(self):
         field_map = {
             "control_record_in_PA": "control_record_in_PA",
@@ -95,6 +110,49 @@ class ProcessListPage(BasePage):
             "control_record_out_PA": "control_record_out_PA",
             "data_block_out_PA": "data_block_out_PA",
             "number_of_records_written_PA": "number_of_records_written_PA",
+        }
+        return {
+            field_name: self.get_text(self._loc(_P, locator_key).first).strip()
+            for field_name, locator_key in field_map.items()
+        }
+
+    def _get_process_part_applying_reslute_values(self):
+        field_map = {
+            "control_record_in_A": "control_record_in_A",
+            "data_block_in_A": "data_block_in_A",
+            "number_of_records_read_A": "number_of_records_read_A",
+            "control_record_out_A": "control_record_out_A",
+            "data_block_out_A": "data_block_out_A",
+            "number_of_records_written_A": "number_of_records_written_A",
+        }
+        return {
+            field_name: self.get_text(self._loc(_P, locator_key).first).strip()
+            for field_name, locator_key in field_map.items()
+        }
+
+    def _get_process_part_applying_values(self):
+        field_map = {
+            "agent_name_A": "agent_name_A",
+            "process_id_A": "process_id_A",
+            "type_of_process_A": "type_of_process_A",
+            "process_name_on_agent_A": "process_name_on_agent_A",
+            "return_code_A": "return_code_A",
+            "error_code_A": "error_code_A",
+            "message_A": "message_A",
+        }
+        return {
+            field_name: self.get_text(self._loc(_P, locator_key).first).strip()
+            for field_name, locator_key in field_map.items()
+        }
+
+    def _get_process_part_processing_reslute_values(self):
+        field_map = {
+            "control_record_in_P": "control_record_in_P",
+            "data_block_in_P": "data_block_in_P",
+            "number_of_records_read_P": "number_of_records_read_P",
+            "control_record_out_P": "control_record_out_P",
+            "data_block_out_P": "data_block_out_P",
+            "number_of_records_written_P": "number_of_records_written_P",
         }
         return {
             field_name: self.get_text(self._loc(_P, locator_key).first).strip()
@@ -420,6 +478,142 @@ class ProcessListPage(BasePage):
 
         return self
 
+    @allure.step("Validate process part Processing values")
+    def validate_process_part_Processing(self, expected_values):
+        field_map = {
+            "agent_name_P": "agent_name_P",
+            "process_id_P": "process_id_P",
+            "type_of_process_P": "type_of_process_P",
+            "process_name_on_agent_P": "process_name_on_agent_P",
+            "return_code_P": "return_code_P",
+            "error_code_P": "error_code_P",
+            "message_P": "message_P",
+        }
+
+        expected_key_aliases = {
+            "agent_name_P": ["agent_name_P", "Agent_P"],
+            "process_id_P": ["process_id_P", "Process_ID_P", "Process_Id_P"],
+            "type_of_process_P": ["type_of_process_P", "Type_Of_Process_P"],
+            "process_name_on_agent_P": ["process_name_on_agent_P", "Process_Name_On_Agent_P"],
+            "return_code_P": ["return_code_P", "Return_Code_P"],
+            "error_code_P": ["error_code_P", "Error_Code_P"],
+            "message_P": ["message_P", "Message_P"],
+        }
+
+        if not isinstance(expected_values, dict):
+            expected_values = {"agent_name_P": expected_values}
+
+        actual_values = self._get_process_part_processing_values()
+        mismatches = []
+        validated_count = 0
+
+        for field_name in field_map.keys():
+            aliases = expected_key_aliases[field_name]
+            source_key = next((k for k in aliases if k in expected_values), None)
+            if source_key is None:
+                continue
+
+            raw_expected = expected_values[source_key]
+            if raw_expected is None or str(raw_expected).strip() == "":
+                continue
+
+            expected_value = str(raw_expected).strip()
+            actual_value = actual_values[field_name]
+            validated_count += 1
+
+            if actual_value == expected_value:
+                allure.attach(
+                    f"PASS | {field_name}",
+                    name=f"PASS - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+            else:
+                detail = (
+                    f"Field: {field_name}\n"
+                    f"Expected: {expected_value}\n"
+                    f"Actual: {actual_value}\n"
+                    f"Source key: {source_key}"
+                )
+                allure.attach(
+                    detail,
+                    name=f"FAIL - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                mismatches.append(
+                    f"{field_name}: actual='{actual_value}' expected='{expected_value}'"
+                )
+
+        if validated_count == 0:
+            msg = (
+                "No comparable expected Processing fields were provided. "
+                "Pass values using keys like agent_name_P/Agent_P, process_id_P/Process_ID_P, etc."
+            )
+            allure.attach(msg, name="Validation Input Error", attachment_type=allure.attachment_type.TEXT)
+            raise AssertionError(msg)
+
+        if mismatches:
+            self.page.screenshot(path="screenshots/process_part_processing_mismatch.png")
+            allure.attach(
+                "\n".join(mismatches),
+                name="Process Part Processing Mismatch Summary",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            raise AssertionError("Process part Processing validation failed:\n" + "\n".join(mismatches))
+
+        return self
+
+    @allure.step("Save process part Processing values to Excel for {test_case_id} in {sheet_name}")
+    def save_process_part_Processing_to_excel(self, test_case_id, sheet_name, id_column="TestCase", part_name=None):
+        ui_values = self._get_process_part_processing_values()
+        excel_field_map = {
+            "agent_name_P": ["Agent_P", "AgentName_P"],
+            "process_id_P": ["Process_ID_P", "Process_Id_P"],
+            "type_of_process_P": ["Type_Of_Process_P"],
+            "process_name_on_agent_P": ["Process_Name_On_Agent_P"],
+            "return_code_P": ["Return_Code_P"],
+            "error_code_P": ["Error_Code_P"],
+            "message_P": ["Message_P"],
+        }
+
+        workbook_path = ConfigManager().excel_path
+        workbook = openpyxl.load_workbook(workbook_path)
+        if sheet_name not in workbook.sheetnames:
+            raise ValueError(f"Sheet '{sheet_name}' not found in '{workbook_path}'")
+
+        sheet = workbook[sheet_name]
+        headers = [str(cell.value).strip() if cell.value is not None else "" for cell in sheet[1]]
+        header_index = {header: idx + 1 for idx, header in enumerate(headers) if header}
+
+        if id_column not in header_index:
+            raise ValueError(f"Column '{id_column}' not found in sheet '{sheet_name}'")
+
+        row_index = None
+        for current_row in range(2, sheet.max_row + 1):
+            value = sheet.cell(current_row, header_index[id_column]).value
+            if str(value or "").strip() == str(test_case_id).strip():
+                row_index = current_row
+                break
+
+        if row_index is None:
+            raise ValueError(f"Test case '{test_case_id}' not found in sheet '{sheet_name}'")
+
+        updated_fields = []
+        for ui_field, excel_candidates in excel_field_map.items():
+            excel_column = self._find_excel_column(header_index, excel_candidates)
+            if excel_column is None:
+                continue
+            sheet.cell(row_index, header_index[excel_column]).value = ui_values[ui_field]
+            updated_fields.append(excel_column)
+
+        self._save_and_close_workbook(workbook, workbook_path)
+
+        if not updated_fields:
+            raise AssertionError(
+                f"No matching Excel columns found in sheet '{sheet_name}' for Processing values"
+            )
+
+        return self
+
     @allure.step("Validate process part ProcessingApplying values")
     def validate_process_part_ProcessingApplying(self, expected_values):
         field_map = {
@@ -692,14 +886,409 @@ class ProcessListPage(BasePage):
 
         return self
 
+    @allure.step("Validate process part applying reslute values")
+    def validate_process_part_applying_reslute(self, expected_values):
+        field_map = {
+            "control_record_in_A": "control_record_in_A",
+            "data_block_in_A": "data_block_in_A",
+            "number_of_records_read_A": "number_of_records_read_A",
+            "control_record_out_A": "control_record_out_A",
+            "data_block_out_A": "data_block_out_A",
+            "number_of_records_written_A": "number_of_records_written_A",
+        }
+
+        expected_key_aliases = {
+            "control_record_in_A": ["control_record_in_A", "Control_Record_In_A", "Control_Records_In_A"],
+            "data_block_in_A": ["data_block_in_A", "Data_Block_In_A"],
+            "number_of_records_read_A": ["number_of_records_read_A", "Number_Of_Records_Read_A", "Number_Of_Recodrs_Read_A"],
+            "control_record_out_A": ["control_record_out_A", "Control_Record_Out_A", "Control_Records_Out_A"],
+            "data_block_out_A": ["data_block_out_A", "Data_Block_Out_A"],
+            "number_of_records_written_A": ["number_of_records_written_A", "Number_Of_Records_Written_A"],
+        }
+
+        if not isinstance(expected_values, dict):
+            expected_values = {"control_record_in_A": expected_values}
+
+        actual_values = self._get_process_part_applying_reslute_values()
+        mismatches = []
+        validated_count = 0
+
+        for field_name in field_map.keys():
+            aliases = expected_key_aliases[field_name]
+            source_key = next((k for k in aliases if k in expected_values), None)
+            if source_key is None:
+                continue
+
+            raw_expected = expected_values[source_key]
+            if raw_expected is None or str(raw_expected).strip() == "":
+                continue
+
+            expected_value = str(raw_expected).strip()
+            actual_value = actual_values[field_name]
+            validated_count += 1
+
+            if actual_value == expected_value:
+                allure.attach(
+                    f"PASS | {field_name}",
+                    name=f"PASS - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+            else:
+                detail = (
+                    f"Field: {field_name}\n"
+                    f"Expected: {expected_value}\n"
+                    f"Actual: {actual_value}\n"
+                    f"Source key: {source_key}"
+                )
+                allure.attach(
+                    detail,
+                    name=f"FAIL - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                mismatches.append(
+                    f"{field_name}: actual='{actual_value}' expected='{expected_value}'"
+                )
+
+        if validated_count == 0:
+            msg = (
+                "No comparable expected applying-reslute fields were provided. "
+                "Pass values using keys like control_record_in_A/Control_Record_In_A, etc."
+            )
+            allure.attach(msg, name="Validation Input Error", attachment_type=allure.attachment_type.TEXT)
+            raise AssertionError(msg)
+
+        if mismatches:
+            self.page.screenshot(path="screenshots/process_part_applying_reslute_mismatch.png")
+            allure.attach(
+                "\n".join(mismatches),
+                name="Process Part Applying Reslute Mismatch Summary",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            raise AssertionError("Process part applying reslute validation failed:\n" + "\n".join(mismatches))
+
+        return self
+
+    @allure.step("Save process part applying reslute values to Excel for {test_case_id} in {sheet_name}")
+    def save_process_part_applying_reslute_to_excel(self, test_case_id, sheet_name, id_column="TestCase", part_name=None):
+        ui_values = self._get_process_part_applying_reslute_values()
+        excel_field_map = {
+            "control_record_in_A": ["Control_Record_In_A", "Control_Records_In_A"],
+            "data_block_in_A": ["Data_Block_In_A"],
+            "number_of_records_read_A": ["Number_Of_Records_Read_A", "Number_Of_Recodrs_Read_A"],
+            "control_record_out_A": ["Control_Record_Out_A", "Control_Records_Out_A"],
+            "data_block_out_A": ["Data_Block_Out_A"],
+            "number_of_records_written_A": ["Number_Of_Records_Written_A"],
+        }
+
+        workbook_path = ConfigManager().excel_path
+        workbook = openpyxl.load_workbook(workbook_path)
+        if sheet_name not in workbook.sheetnames:
+            raise ValueError(f"Sheet '{sheet_name}' not found in '{workbook_path}'")
+
+        sheet = workbook[sheet_name]
+        headers = [str(cell.value).strip() if cell.value is not None else "" for cell in sheet[1]]
+        header_index = {header: idx + 1 for idx, header in enumerate(headers) if header}
+
+        if id_column not in header_index:
+            raise ValueError(f"Column '{id_column}' not found in sheet '{sheet_name}'")
+
+        row_index = None
+        for current_row in range(2, sheet.max_row + 1):
+            value = sheet.cell(current_row, header_index[id_column]).value
+            if str(value or "").strip() == str(test_case_id).strip():
+                row_index = current_row
+                break
+
+        if row_index is None:
+            raise ValueError(f"Test case '{test_case_id}' not found in sheet '{sheet_name}'")
+
+        updated_fields = []
+        for ui_field, excel_candidates in excel_field_map.items():
+            excel_column = self._find_excel_column(header_index, excel_candidates)
+            if excel_column is None:
+                continue
+            sheet.cell(row_index, header_index[excel_column]).value = ui_values[ui_field]
+            updated_fields.append(excel_column)
+
+        self._save_and_close_workbook(workbook, workbook_path)
+
+        if not updated_fields:
+            raise AssertionError(
+                f"No matching Excel columns found in sheet '{sheet_name}' for applying reslute values"
+            )
+
+        return self
+
+    @allure.step("Validate process part Applying values")
+    def validate_process_part_Applying(self, expected_values):
+        field_map = {
+            "agent_name_A": "agent_name_A",
+            "process_id_A": "process_id_A",
+            "type_of_process_A": "type_of_process_A",
+            "process_name_on_agent_A": "process_name_on_agent_A",
+            "return_code_A": "return_code_A",
+            "error_code_A": "error_code_A",
+            "message_A": "message_A",
+        }
+
+        expected_key_aliases = {
+            "agent_name_A": ["agent_name_A", "Agent_A"],
+            "process_id_A": ["process_id_A", "Process_ID_A", "Process_Id_A"],
+            "type_of_process_A": ["type_of_process_A", "Type_Of_Process_A"],
+            "process_name_on_agent_A": ["process_name_on_agent_A", "Process_Name_On_Agent_A"],
+            "return_code_A": ["return_code_A", "Return_Code_A"],
+            "error_code_A": ["error_code_A", "Error_Code_A"],
+            "message_A": ["message_A", "Message_A"],
+        }
+
+        if not isinstance(expected_values, dict):
+            expected_values = {"agent_name_A": expected_values}
+
+        actual_values = self._get_process_part_applying_values()
+        mismatches = []
+        validated_count = 0
+
+        for field_name in field_map.keys():
+            aliases = expected_key_aliases[field_name]
+            source_key = next((k for k in aliases if k in expected_values), None)
+            if source_key is None:
+                continue
+
+            raw_expected = expected_values[source_key]
+            if raw_expected is None or str(raw_expected).strip() == "":
+                continue
+
+            expected_value = str(raw_expected).strip()
+            actual_value = actual_values[field_name]
+            validated_count += 1
+
+            if actual_value == expected_value:
+                allure.attach(
+                    f"PASS | {field_name}",
+                    name=f"PASS - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+            else:
+                detail = (
+                    f"Field: {field_name}\n"
+                    f"Expected: {expected_value}\n"
+                    f"Actual: {actual_value}\n"
+                    f"Source key: {source_key}"
+                )
+                allure.attach(
+                    detail,
+                    name=f"FAIL - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                mismatches.append(
+                    f"{field_name}: actual='{actual_value}' expected='{expected_value}'"
+                )
+
+        if validated_count == 0:
+            msg = (
+                "No comparable expected Applying fields were provided. "
+                "Pass values using keys like agent_name_A/Agent_A, process_id_A/Process_ID_A, etc."
+            )
+            allure.attach(msg, name="Validation Input Error", attachment_type=allure.attachment_type.TEXT)
+            raise AssertionError(msg)
+
+        if mismatches:
+            self.page.screenshot(path="screenshots/process_part_applying_mismatch.png")
+            allure.attach(
+                "\n".join(mismatches),
+                name="Process Part Applying Mismatch Summary",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            raise AssertionError("Process part Applying validation failed:\n" + "\n".join(mismatches))
+
+        return self
+
+    @allure.step("Save process part Applying values to Excel for {test_case_id} in {sheet_name}")
+    def save_process_part_Applying_to_excel(self, test_case_id, sheet_name, id_column="TestCase", part_name=None):
+        ui_values = self._get_process_part_applying_values()
+        excel_field_map = {
+            "agent_name_A": ["Agent_A"],
+            "process_id_A": ["Process_ID_A", "Process_Id_A"],
+            "type_of_process_A": ["Type_Of_Process_A"],
+            "process_name_on_agent_A": ["Process_Name_On_Agent_A"],
+            "return_code_A": ["Return_Code_A"],
+            "error_code_A": ["Error_Code_A"],
+            "message_A": ["Message_A"],
+        }
+
+        workbook_path = ConfigManager().excel_path
+        workbook = openpyxl.load_workbook(workbook_path)
+        if sheet_name not in workbook.sheetnames:
+            raise ValueError(f"Sheet '{sheet_name}' not found in '{workbook_path}'")
+
+        sheet = workbook[sheet_name]
+        headers = [str(cell.value).strip() if cell.value is not None else "" for cell in sheet[1]]
+        header_index = {header: idx + 1 for idx, header in enumerate(headers) if header}
+
+        if id_column not in header_index:
+            raise ValueError(f"Column '{id_column}' not found in sheet '{sheet_name}'")
+
+        row_index = None
+        for current_row in range(2, sheet.max_row + 1):
+            value = sheet.cell(current_row, header_index[id_column]).value
+            if str(value or "").strip() == str(test_case_id).strip():
+                row_index = current_row
+                break
+
+        if row_index is None:
+            raise ValueError(f"Test case '{test_case_id}' not found in sheet '{sheet_name}'")
+
+        updated_fields = []
+        for ui_field, excel_candidates in excel_field_map.items():
+            excel_column = self._find_excel_column(header_index, excel_candidates)
+            if excel_column is None:
+                continue
+            sheet.cell(row_index, header_index[excel_column]).value = ui_values[ui_field]
+            updated_fields.append(excel_column)
+
+        self._save_and_close_workbook(workbook, workbook_path)
+
+        if not updated_fields:
+            raise AssertionError(
+                f"No matching Excel columns found in sheet '{sheet_name}' for Applying values"
+            )
+
+        return self
+
+    @allure.step("Validate process part Processing reslute values")
+    def validate_process_part_Processing_reslute(self, expected_values):
+        field_map = {
+            "control_record_in_P": "control_record_in_P",
+            "data_block_in_P": "data_block_in_P",
+            "number_of_records_read_P": "number_of_records_read_P",
+            "control_record_out_P": "control_record_out_P",
+            "data_block_out_P": "data_block_out_P",
+            "number_of_records_written_P": "number_of_records_written_P",
+        }
+
+        expected_key_aliases = {
+            "control_record_in_P": ["control_record_in_P", "Control_Record_In_P", "Control_Records_In_P"],
+            "data_block_in_P": ["data_block_in_P", "Data_Block_In_P"],
+            "number_of_records_read_P": ["number_of_records_read_P", "Number_Of_Records_Read_P", "Number_Of_Recodrs_Read_P"],
+            "control_record_out_P": ["control_record_out_P", "Control_Record_Out_P", "Control_Records_Out_P"],
+            "data_block_out_P": ["data_block_out_P", "Data_Block_Out_P"],
+            "number_of_records_written_P": ["number_of_records_written_P", "Number_Of_Records_Written_P"],
+        }
+
+        if not isinstance(expected_values, dict):
+            expected_values = {"control_record_in_P": expected_values}
+
+        actual_values = self._get_process_part_processing_reslute_values()
+        mismatches = []
+        validated_count = 0
+
+        for field_name in field_map.keys():
+            aliases = expected_key_aliases[field_name]
+            source_key = next((k for k in aliases if k in expected_values), None)
+            if source_key is None:
+                continue
+
+            raw_expected = expected_values[source_key]
+            if raw_expected is None or str(raw_expected).strip() == "":
+                continue
+
+            expected_value = str(raw_expected).strip()
+            actual_value = actual_values[field_name]
+            validated_count += 1
+
+            if actual_value == expected_value:
+                allure.attach(
+                    f"PASS | {field_name}",
+                    name=f"PASS - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+            else:
+                detail = (
+                    f"Field: {field_name}\n"
+                    f"Expected: {expected_value}\n"
+                    f"Actual: {actual_value}\n"
+                    f"Source key: {source_key}"
+                )
+                allure.attach(
+                    detail,
+                    name=f"FAIL - {field_name}",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                mismatches.append(
+                    f"{field_name}: actual='{actual_value}' expected='{expected_value}'"
+                )
+
+        if validated_count == 0:
+            msg = (
+                "No comparable expected Processing-reslute fields were provided. "
+                "Pass values using keys like control_record_in_P/Control_Record_In_P, etc."
+            )
+            allure.attach(msg, name="Validation Input Error", attachment_type=allure.attachment_type.TEXT)
+            raise AssertionError(msg)
+
+        if mismatches:
+            self.page.screenshot(path="screenshots/process_part_processing_reslute_mismatch.png")
+            allure.attach(
+                "\n".join(mismatches),
+                name="Process Part Processing Reslute Mismatch Summary",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            raise AssertionError("Process part Processing reslute validation failed:\n" + "\n".join(mismatches))
+
+        return self
+
+    @allure.step("Save process part Processing reslute values to Excel for {test_case_id} in {sheet_name}")
+    def save_process_part_Processing_reslute_to_excel(self, test_case_id, sheet_name, id_column="TestCase", part_name=None):
+        ui_values = self._get_process_part_processing_reslute_values()
+        excel_field_map = {
+            "control_record_in_P": ["Control_Record_In_P", "Control_Records_In_P"],
+            "data_block_in_P": ["Data_Block_In_P"],
+            "number_of_records_read_P": ["Number_Of_Records_Read_P", "Number_Of_Recodrs_Read_P"],
+            "control_record_out_P": ["Control_Record_Out_P", "Control_Records_Out_P"],
+            "data_block_out_P": ["Data_Block_Out_P"],
+            "number_of_records_written_P": ["Number_Of_Records_Written_P"],
+        }
+
+        workbook_path = ConfigManager().excel_path
+        workbook = openpyxl.load_workbook(workbook_path)
+        if sheet_name not in workbook.sheetnames:
+            raise ValueError(f"Sheet '{sheet_name}' not found in '{workbook_path}'")
+
+        sheet = workbook[sheet_name]
+        headers = [str(cell.value).strip() if cell.value is not None else "" for cell in sheet[1]]
+        header_index = {header: idx + 1 for idx, header in enumerate(headers) if header}
+
+        if id_column not in header_index:
+            raise ValueError(f"Column '{id_column}' not found in sheet '{sheet_name}'")
+
+        row_index = None
+        for current_row in range(2, sheet.max_row + 1):
+            value = sheet.cell(current_row, header_index[id_column]).value
+            if str(value or "").strip() == str(test_case_id).strip():
+                row_index = current_row
+                break
+
+        if row_index is None:
+            raise ValueError(f"Test case '{test_case_id}' not found in sheet '{sheet_name}'")
+
+        updated_fields = []
+        for ui_field, excel_candidates in excel_field_map.items():
+            excel_column = self._find_excel_column(header_index, excel_candidates)
+            if excel_column is None:
+                continue
+            sheet.cell(row_index, header_index[excel_column]).value = ui_values[ui_field]
+            updated_fields.append(excel_column)
+
+        self._save_and_close_workbook(workbook, workbook_path)
+
+        if not updated_fields:
+            raise AssertionError(
+                f"No matching Excel columns found in sheet '{sheet_name}' for Processing reslute values"
+            )
+
+        return self
+
         
-
-
-
-
-
-
-   
 
    
 

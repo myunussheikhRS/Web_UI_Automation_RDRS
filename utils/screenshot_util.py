@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-import allure
 from playwright.sync_api import Page
 from utils.config_manager import ConfigManager
 
@@ -13,8 +12,6 @@ class ScreenshotUtil:
         safe = "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
         fp = os.path.join(d, f"{safe}_{ts}.png")
         page.screenshot(path=fp, full_page=True)
-        with open(fp, "rb") as f:
-            allure.attach(f.read(), name=name, attachment_type=allure.attachment_type.PNG)
         return fp
     @staticmethod
     def capture_on_failure(page: Page, test_name: str) -> str:
